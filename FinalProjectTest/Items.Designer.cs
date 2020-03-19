@@ -29,25 +29,38 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Items));
             this.itemDesc = new System.Windows.Forms.TextBox();
             this.itemPrice = new System.Windows.Forms.TextBox();
-            this.itemsButton = new System.Windows.Forms.Button();
-            this.dataItems = new System.Windows.Forms.DataGridView();
+            this.trackedItemBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.trackingItemsDataSet = new FinalProjectTest.TrackingItemsDataSet();
+            this.trackedItemBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dataSet1 = new FinalProjectTest.DataSet1();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
             this.itemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.itemsAgainToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutUsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
-            ((System.ComponentModel.ISupportInitialize)(this.dataItems)).BeginInit();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.button1 = new System.Windows.Forms.Button();
+            this.trackedItemTableAdapter = new FinalProjectTest.DataSet1TableAdapters.TrackedItemTableAdapter();
+            this.trackedItemTableAdapter1 = new FinalProjectTest.TrackingItemsDataSetTableAdapters.TrackedItemTableAdapter();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.trackedItemBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackingItemsDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackedItemBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.contextMenuStrip2.SuspendLayout();
             this.menuStrip2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // itemDesc
@@ -64,23 +77,25 @@
             this.itemPrice.Size = new System.Drawing.Size(374, 20);
             this.itemPrice.TabIndex = 1;
             // 
-            // itemsButton
+            // trackedItemBindingSource1
             // 
-            this.itemsButton.Location = new System.Drawing.Point(582, 270);
-            this.itemsButton.Name = "itemsButton";
-            this.itemsButton.Size = new System.Drawing.Size(75, 23);
-            this.itemsButton.TabIndex = 2;
-            this.itemsButton.Text = "Submit";
-            this.itemsButton.UseVisualStyleBackColor = true;
-            this.itemsButton.Click += new System.EventHandler(this.itemsButton_Click);
+            this.trackedItemBindingSource1.DataMember = "TrackedItem";
+            this.trackedItemBindingSource1.DataSource = this.trackingItemsDataSet;
             // 
-            // dataItems
+            // trackingItemsDataSet
             // 
-            this.dataItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataItems.Location = new System.Drawing.Point(440, 359);
-            this.dataItems.Name = "dataItems";
-            this.dataItems.Size = new System.Drawing.Size(374, 150);
-            this.dataItems.TabIndex = 3;
+            this.trackingItemsDataSet.DataSetName = "TrackingItemsDataSet";
+            this.trackingItemsDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // trackedItemBindingSource
+            // 
+            this.trackedItemBindingSource.DataMember = "TrackedItem";
+            this.trackedItemBindingSource.DataSource = this.dataSet1;
+            // 
+            // dataSet1
+            // 
+            this.dataSet1.DataSetName = "DataSet1";
+            this.dataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // label1
             // 
@@ -99,15 +114,6 @@
             this.label2.Size = new System.Drawing.Size(54, 13);
             this.label2.TabIndex = 5;
             this.label2.Text = "Item Price";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(582, 343);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(75, 13);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "Items Tracked";
             // 
             // contextMenuStrip1
             // 
@@ -148,40 +154,97 @@
             // 
             // itemsToolStripMenuItem
             // 
+            this.itemsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.itemsAgainToolStripMenuItem});
             this.itemsToolStripMenuItem.Name = "itemsToolStripMenuItem";
             this.itemsToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
             this.itemsToolStripMenuItem.Text = "Items";
             // 
+            // itemsAgainToolStripMenuItem
+            // 
+            this.itemsAgainToolStripMenuItem.Name = "itemsAgainToolStripMenuItem";
+            this.itemsAgainToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.itemsAgainToolStripMenuItem.Text = "Items Again";
+            this.itemsAgainToolStripMenuItem.Click += new System.EventHandler(this.itemsAgainToolStripMenuItem_Click);
+            // 
             // toolStripMenuItem1
             // 
+            this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.aboutUsToolStripMenuItem});
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(52, 20);
             this.toolStripMenuItem1.Text = "About";
-            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
+            // 
+            // aboutUsToolStripMenuItem
+            // 
+            this.aboutUsToolStripMenuItem.Name = "aboutUsToolStripMenuItem";
+            this.aboutUsToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
+            this.aboutUsToolStripMenuItem.Text = "About Us";
+            this.aboutUsToolStripMenuItem.Click += new System.EventHandler(this.aboutUsToolStripMenuItem_Click);
             // 
             // toolStripMenuItem4
             // 
+            this.toolStripMenuItem4.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.exitToolStripMenuItem});
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
             this.toolStripMenuItem4.Size = new System.Drawing.Size(57, 20);
             this.toolStripMenuItem4.Text = "Logout";
             // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(93, 22);
+            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(582, 265);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 9;
+            this.button1.Text = "Submit";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // trackedItemTableAdapter
+            // 
+            this.trackedItemTableAdapter.ClearBeforeFill = true;
+            // 
+            // trackedItemTableAdapter1
+            // 
+            this.trackedItemTableAdapter1.ClearBeforeFill = true;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(440, 335);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(374, 150);
+            this.dataGridView1.TabIndex = 10;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            // 
             // Items
             // 
             this.ClientSize = new System.Drawing.Size(1136, 589);
+            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.menuStrip2);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.dataItems);
-            this.Controls.Add(this.itemsButton);
             this.Controls.Add(this.itemPrice);
             this.Controls.Add(this.itemDesc);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Items";
-            ((System.ComponentModel.ISupportInitialize)(this.dataItems)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackedItemBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackingItemsDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackedItemBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
             this.contextMenuStrip2.ResumeLayout(false);
             this.menuStrip2.ResumeLayout(false);
             this.menuStrip2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -199,11 +262,8 @@
         private System.Windows.Forms.ToolStripMenuItem logoutToolStripMenuItem;
         private System.Windows.Forms.TextBox itemDesc;
         private System.Windows.Forms.TextBox itemPrice;
-        private System.Windows.Forms.Button itemsButton;
-        private System.Windows.Forms.DataGridView dataItems;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip2;
@@ -212,5 +272,16 @@
         private System.Windows.Forms.ToolStripMenuItem itemsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem4;
+        private DataSet1 dataSet1;
+        private System.Windows.Forms.BindingSource trackedItemBindingSource;
+        private DataSet1TableAdapters.TrackedItemTableAdapter trackedItemTableAdapter;
+        private System.Windows.Forms.ToolStripMenuItem aboutUsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem itemsAgainToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+        private System.Windows.Forms.Button button1;
+        private TrackingItemsDataSet trackingItemsDataSet;
+        private System.Windows.Forms.BindingSource trackedItemBindingSource1;
+        private TrackingItemsDataSetTableAdapters.TrackedItemTableAdapter trackedItemTableAdapter1;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }
